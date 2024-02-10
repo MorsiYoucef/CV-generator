@@ -16,6 +16,7 @@ const Form = () => {
   const [degree, setDegree] = useState('Maser Degree')
   const [startedu, setStartedu] = useState('08/12/2021')
   const [addinfo, setAddinfo] = useState('freelancer')
+  const [val, setVal] = useState([{}])
   const [position, setPosition] = useState('frontend developer')
   const [company, setCompany] = useState('Google')
   const [startcompany, setStartcompany] = useState('08/12/2024')
@@ -37,6 +38,9 @@ const Form = () => {
   function handleEmailChange(e) {
     setEmail(e.target.value)
   }
+  function handleWebsiteChange(e) {
+    setWebsite(e.target.value)
+  }
   function handlePhoneChange(e) {
     setPhone(e.target.value)
   }
@@ -49,12 +53,19 @@ const Form = () => {
   function handleDegreeChange(e) {
     setDegree(e.target.value)
   }
-  function handleAddinfoChange(e) {
-    setAddinfo(e.target.value)
+  const handleAddinfoChange = (e) => {
+    setAddinfo(e.target.value) // Update addinfo state with input value
   }
-  function handleWebsiteChange(e) {
-    setWebsite(e.target.value)
+  function handleAdd() {
+    const abc = [...val, []]
+    setVal(abc)
   }
+  // const handleChange = (onChangeValue, i) => {
+  //   const inputdata = [...val]
+  //   inputdata[i] = onChangeValue.target.value
+  //   setVal(inputdata)
+  // }
+
   function handleStartEduChange(e) {
     setStartedu(e.target.value)
   }
@@ -78,12 +89,16 @@ const Form = () => {
     <div className="container">
       <div className="nav">
         <header>
-          <h1>CV Generator</h1>
-          <button>Save</button>
+          <h1 className="logo">CV Generator</h1>
+          <button className="button-1" role="button">
+            Save
+          </button>
         </header>
-        <h2>Basic information</h2>
+        <h2 className="title"> Basic information</h2>
         <form onSubmit={(e) => e.preventDefault()}>
-          <label for="fname">First name:</label>
+          <label for="fname" className="title-input">
+            First name:
+          </label>
           <br></br>
           <input
             type="text"
@@ -94,7 +109,9 @@ const Form = () => {
             onChange={handleFirstNameChange}
           ></input>
           <br></br>
-          <label for="lname">Last name:</label>
+          <label for="lname" className="title-input">
+            Last name:
+          </label>
           <br></br>
           <input
             type="text"
@@ -106,7 +123,9 @@ const Form = () => {
           ></input>
           <br></br>
 
-          <label for="lname">Professional Title:</label>
+          <label for="lname" className="title-input">
+            Professional Title:
+          </label>
           <br></br>
           <input
             type="text"
@@ -117,7 +136,9 @@ const Form = () => {
             onChange={handleProTitleChange}
           ></input>
           <br></br>
-          <label for="lname">About you:</label>
+          <label for="lname" className="title-input">
+            About you:
+          </label>
           <br></br>
           <input
             type="text"
@@ -129,9 +150,11 @@ const Form = () => {
           ></input>
 
           <hr />
-          <h2>Contact information</h2>
+          <h2 className="title">Contact information</h2>
 
-          <label for="email">Email adress:</label>
+          <label for="email" className="title-input">
+            Email adress:
+          </label>
           <br></br>
           <input
             type="email"
@@ -142,7 +165,9 @@ const Form = () => {
             onChange={handleEmailChange}
           ></input>
           <br></br>
-          <label for="phone">Phone number:</label>
+          <label for="phone" className="title-input">
+            Phone number:
+          </label>
           <br></br>
           <input
             type="tel"
@@ -153,7 +178,9 @@ const Form = () => {
             onChange={handlePhoneChange}
           ></input>
           <br></br>
-          <label for="address">Address :</label>
+          <label for="address" className="title-input">
+            Address :
+          </label>
           <br></br>
           <input
             type="text"
@@ -164,7 +191,9 @@ const Form = () => {
             onChange={handleAddressChange}
           ></input>
           <br></br>
-          <label for="website">Website:</label>
+          <label for="website" className="title-input">
+            Website:
+          </label>
           <br></br>
           <input
             type="url"
@@ -176,9 +205,11 @@ const Form = () => {
           ></input>
 
           <hr />
-          <h2>Education background</h2>
+          <h2 className="title">Education background</h2>
 
-          <label for="univ">University:</label>
+          <label for="univ" className="title-input">
+            University:
+          </label>
           <br></br>
           <input
             type="text"
@@ -189,7 +220,9 @@ const Form = () => {
             onChange={handleUnivChange}
           ></input>
           <br></br>
-          <label for="degree">Degree:</label>
+          <label for="degree" className="title-input">
+            Degree:
+          </label>
           <br></br>
           <input
             type="text"
@@ -200,7 +233,9 @@ const Form = () => {
             onChange={handleDegreeChange}
           ></input>
           <br></br>
-          <label for="start">Starting:</label>
+          <label for="start" className="title-input">
+            Starting:
+          </label>
           <br></br>
           <input
             type="date"
@@ -211,23 +246,38 @@ const Form = () => {
             onChange={handleStartEduChange}
           ></input>
           <br></br>
-          <label for="addinfo">Additional Info(Awards,etc):</label>
+          <label for="addinfo" className="title-input">
+            Additional Info(Awards,etc):
+          </label>
           <br></br>
-          <input
-            type="text"
-            id="addinfo"
-            name="addinfo"
-            placeholder="Add additional information here"
-            value={addinfo}
-            onChange={handleAddinfoChange}
-          ></input>
-          <br></br>
+          <div className="add-input">
+            <input
+              type="text"
+              id="addinfo"
+              name="addinfo"
+              placeholder="Add additional information here"
+              value={addinfo}
+              onChange={handleAddinfoChange}
+            ></input>
+
+            <button onClick={() => handleAdd()}>Add Input</button>
+            <br></br>
+            {val.map((data, i) => {
+              return (
+                <div>
+                  <input type="text" onChange={(e) => handleChange(e, i)} />
+                </div>
+              )
+            })}
+          </div>
           <input type="submit" value="Submit"></input>
         </form>
         <hr />
-        <h1>Work experience</h1>
+        <h1 className="title">Work experience</h1>
         <form onSubmit={(e) => e.preventDefault()}>
-          <label for="position">Position:</label>
+          <label for="position" className="title-input">
+            Position:
+          </label>
           <br></br>
           <input
             type="text"
@@ -238,7 +288,9 @@ const Form = () => {
             onChange={handlePositionChange}
           ></input>
           <br></br>
-          <label for="company">Company:</label>
+          <label for="company" className="title-input">
+            Company:
+          </label>
           <br></br>
           <input
             type="text"
@@ -249,7 +301,9 @@ const Form = () => {
             onChange={handleCompanyChange}
           ></input>
           <br></br>
-          <label for="start">Start Date:</label>
+          <label for="start" className="title-input">
+            Start Date:
+          </label>
           <br></br>
           <input
             type="date"
@@ -260,7 +314,9 @@ const Form = () => {
             onChange={handleStartCompanyChange}
           ></input>
           <br></br>
-          <label for="duties">Duties/Responsibilities:</label>
+          <label for="duties" className="title-input">
+            Duties/Responsibilities:
+          </label>
           <br></br>
           <input
             type="text"
@@ -274,9 +330,11 @@ const Form = () => {
           <input type="submit" value="Submit"></input>
         </form>
         <hr />
-        <h2>Skills and Trainings</h2>
+        <h2 className="title">Skills and Trainings</h2>
         <form onSubmit={(e) => e.preventDefault()}>
-          <label for="skill">Skill or Training:</label>
+          <label for="skill " className="title-input">
+            Skill or Training:
+          </label>
           <br></br>
           <input
             type="text"
@@ -295,11 +353,13 @@ const Form = () => {
           <div className="paper-container">
             <div className="first-row">
               <div>
-                <h1>
+                <h1 className="logo">
                   {firstName} {lastName}
                 </h1>
-                <h3>{proTitle}</h3>
-                <p>{about}</p>
+                <h3 className="title">{proTitle}</h3>
+                <p className="title-input" style={{ color: 'grey' }}>
+                  {about}
+                </p>
               </div>
               <div>
                 <div className="icons">
@@ -370,7 +430,7 @@ const Form = () => {
 
 const Sidebar = () => {
   return (
-    <section className="nav">
+    <section>
       <Form />
     </section>
   )
