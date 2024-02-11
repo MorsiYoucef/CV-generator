@@ -1,11 +1,11 @@
 import React from 'react'
-import Sidebar from './pages/sidebar.jsx'
+import Form from './components/Form.jsx'
 import './App.css'
 
 function App() {
   return (
     <div>
-      <Sidebar />
+      <Form />
     </div>
   )
 }
